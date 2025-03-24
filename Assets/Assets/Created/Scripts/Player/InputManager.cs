@@ -14,6 +14,10 @@ public class InputManager : MonoBehaviour
 
     public float camInputX;
     public float camInputY;
+    [Range(0.001f, 1f)]
+    [SerializeField] private float sensetivityX;
+    [Range(0.001f, 1f)]
+    [SerializeField] private float sensetivityY;
 
     public float moveAmount;
     public float verticalInput;
@@ -62,8 +66,8 @@ public class InputManager : MonoBehaviour
         horizontalInput = moveInput.x;
 
 
-        camInputY = camInput.y;
-        camInputX = camInput.x;
+        camInputY = camInput.y * sensetivityY;
+        camInputX = camInput.x * sensetivityX;
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         animationManager.UpdateAnimatorValues(0, moveAmount, locomotion.isSprinting);

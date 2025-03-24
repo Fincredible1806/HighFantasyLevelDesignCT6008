@@ -81,4 +81,9 @@ public class PlayerAnimationManager : MonoBehaviour
         playerAnimator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
         playerAnimator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
     }
+
+    public void FallBool(bool faller)
+    {
+        playerAnimator.SetBool("isFalling", faller);
+    }
 }

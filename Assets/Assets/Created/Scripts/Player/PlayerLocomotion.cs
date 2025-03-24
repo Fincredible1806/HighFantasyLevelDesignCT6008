@@ -21,6 +21,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     [Header("Move flags")]
     public bool isGrounded;
+    public bool isFalling;
     public bool isSprinting;
 
     [Header("Movement Speeds")]
@@ -126,13 +127,17 @@ public class PlayerLocomotion : MonoBehaviour
             }
 
             airTime = 0;
+            isFalling = false;
+            animManager.FallBool(isFalling);
             isGrounded = true;
             manager.isInteracting = false;
         }
 
         else
         {
+            isFalling = true;
             isGrounded = false;
+            animManager.FallBool(isFalling);
         }
 
     }
