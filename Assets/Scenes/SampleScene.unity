@@ -1327,6 +1327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdff743dc034a440a8dd55c10640d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 0}
 --- !u!136 &1819180726
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1397,12 +1398,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
-  isFalling: 0
   isSprinting: 0
+  isJumping: 1
   walkSpeed: 2
   runSpeed: 5
   sprintSpeed: 7
-  rotSpeed: 2
+  rotSpeed: 5
+  jumpHeight: 1.5
+  gravIntensity: -15
 --- !u!114 &1819180729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1424,7 +1427,6 @@ MonoBehaviour:
   moveAmount: 0
   verticalInput: 0
   horizontalInput: 0
-  sprintInput: 0
 --- !u!114 &1819180730
 MonoBehaviour:
   m_ObjectHideFlags: 0

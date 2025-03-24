@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public class PlayerLocomotion : MonoBehaviour
 {
@@ -21,14 +22,18 @@ public class PlayerLocomotion : MonoBehaviour
 
     [Header("Move flags")]
     public bool isGrounded;
-    public bool isFalling;
     public bool isSprinting;
+    public bool isJumping;
 
     [Header("Movement Speeds")]
     [SerializeField] private float walkSpeed = 2f;
     public float runSpeed= 5;
     [SerializeField] private float sprintSpeed = 7f;
     public float rotSpeed = 15;
+
+    [Header("Jumping")]
+    [SerializeField] private float jumpHeight = 3;
+    [SerializeField] private float gravIntensity = -15;
 
     private void Awake()
     {
@@ -53,7 +58,10 @@ public class PlayerLocomotion : MonoBehaviour
     }
     private void HandleMovemet()
     {
-
+        if(isJumping)
+        {
+            return;
+        }
         moveDir = new Vector3(cameraObject.forward.x, 0f, cameraObject.forward.z) * inputManager.verticalInput;
         moveDir += cameraObject.right * inputManager.horizontalInput;
         moveDir.Normalize();
@@ -83,6 +91,11 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void RotateHandler()
     {
+        if (isJumping)
+        {
+            return; 
+        }
+
         Vector3 targetDir = Vector3.zero;
 
         targetDir = cameraObject.forward * inputManager.verticalInput;
@@ -106,7 +119,7 @@ public class PlayerLocomotion : MonoBehaviour
         RaycastHit hit;
         Vector3 rayCastOrigin = transform.position;
         rayCastOrigin.y = rayCastOrigin.y + rayCastHeightOffset;
-        if (!isGrounded)
+        if (!isGrounded && !isJumping)
         {
             if(!manager.isInteracting)
             {
@@ -127,18 +140,29 @@ public class PlayerLocomotion : MonoBehaviour
             }
 
             airTime = 0;
-            isFalling = false;
-            animManager.FallBool(isFalling);
+            animManager.FallBool(false);
             isGrounded = true;
             manager.isInteracting = false;
         }
 
         else
         {
-            isFalling = true;
             isGrounded = false;
-            animManager.FallBool(isFalling);
+            animManager.FallBool(true);
         }
 
+    }
+
+    public void HandleJump()
+    {
+        if (isGrounded)
+        {
+            animManager.playerAnimator.SetBool("isJumping", true);
+            animManager.PlayTargetAnimation("Jumping", false);
+
+            float jumpVelocity = Mathf.Sqrt(-2 * gravIntensity * jumpHeight);
+            Vector3 playerVelocity = new Vector3(moveDir.x, jumpVelocity, moveDir.z);
+            playerRb.velocity = playerVelocity;
+        }
     }
 }

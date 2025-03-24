@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
-    Animator playerAnimator;
+    public Animator playerAnimator;
     int horizontal;
     int vertical;
 
