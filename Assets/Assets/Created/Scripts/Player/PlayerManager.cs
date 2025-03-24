@@ -7,10 +7,14 @@ public class PlayerManager : MonoBehaviour
 {
     InputManager inputManager;
     PlayerLocomotion playerLoco;
+    Animator animator;
     CameraManager camManager;
+
+    public bool isInteracting;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         inputManager = GetComponent<InputManager>();
         camManager = FindObjectOfType<CameraManager>();
         playerLoco = GetComponent<PlayerLocomotion>();
@@ -29,6 +33,8 @@ public class PlayerManager : MonoBehaviour
     private void LateUpdate()
     {
         camManager.AllCamMovement();
+
+        isInteracting = animator.GetBool("isLocked");
     }
 
 }

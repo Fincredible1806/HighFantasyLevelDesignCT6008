@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Users;
 
 public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
+    PlayerLocomotion locomotion;
     PlayerAnimationManager animationManager;
 
     public Vector2 moveInput;
@@ -13,13 +15,16 @@ public class InputManager : MonoBehaviour
     public float camInputX;
     public float camInputY;
 
-    private float moveAmount;
+    public float moveAmount;
     public float verticalInput;
     public float horizontalInput;
+
+    public bool sprintInput;
 
     private void Awake()
     {
         animationManager = GetComponent<PlayerAnimationManager>();
+        locomotion = GetComponent<PlayerLocomotion>();
     }
     private void OnEnable()
     {
@@ -29,6 +34,12 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerMovement.Movement.performed += i => moveInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => camInput = i.ReadValue<Vector2>();
+
+            playerControls.PlayerActions.Sprinting.performed += i => sprintInput = true;
+            playerControls.PlayerActions.Sprinting.canceled += i => sprintInput = false;
+
+
+
         }
 
         playerControls.Enable();
@@ -42,6 +53,7 @@ public class InputManager : MonoBehaviour
     public void HandleAllInput()
     {
         HandleMovementInput();
+        HandleSprintInput();
     }
 
     private void HandleMovementInput()
@@ -54,6 +66,18 @@ public class InputManager : MonoBehaviour
         camInputX = camInput.x;
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        animationManager.UpdateAnimatorValues(0, moveAmount);
+        animationManager.UpdateAnimatorValues(0, moveAmount, locomotion.isSprinting);
+    }
+
+    private void HandleSprintInput()
+    {
+        if(sprintInput && moveAmount > 0.5f)
+        {
+            locomotion.isSprinting = true;
+        }
+        else
+        {
+            locomotion.isSprinting= false;
+        }
     }
 }

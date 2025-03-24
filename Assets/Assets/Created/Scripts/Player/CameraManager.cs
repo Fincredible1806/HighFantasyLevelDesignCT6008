@@ -56,8 +56,8 @@ public class CameraManager : MonoBehaviour
         Vector3 rotation;
         Quaternion targetRot;
 
-       lookAngle = lookAngle + (inpManager.camInputX * camLookSpeed);
-       pivotAngle = pivotAngle - (inpManager.camInputY * camPivotSpeed);
+       lookAngle += (inpManager.camInputX * camLookSpeed);
+       pivotAngle -= (inpManager.camInputY * camPivotSpeed);
         pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
 
         rotation = Vector3.zero;
@@ -74,13 +74,12 @@ public class CameraManager : MonoBehaviour
     private void HandleCollision()
     {
         float targetPos = defaultPos;
-        RaycastHit hit;
         Vector3 direction;
         direction = cameraTransform.position - camPivot.position;
         direction.Normalize();
 
         if (Physics.SphereCast
-            (camPivot.transform.position, camCollisionRadius, direction, out hit, Mathf.Abs(targetPos), collisionLayers))
+            (camPivot.transform.position, camCollisionRadius, direction, out RaycastHit hit, Mathf.Abs(targetPos), collisionLayers))
         {
             float distance;
             distance = Vector3.Distance(camPivot.position, hit.point);
