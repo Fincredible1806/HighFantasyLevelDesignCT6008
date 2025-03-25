@@ -5,19 +5,24 @@ using UnityEngine;
 public class PlayerAnimationManager : MonoBehaviour
 {
     public Animator playerAnimator;
+    PlayerManager manager;
+    PlayerLocomotion locomotion;
     int horizontal;
     int vertical;
 
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
+        manager= GetComponent<PlayerManager>(); 
+        locomotion = GetComponent<PlayerLocomotion>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }
 
-    public void PlayTargetAnimation(string targetAnim, bool isLocked)
+    public void PlayTargetAnimation(string targetAnim, bool isLocked, bool useRootMotion = false)
     {
         playerAnimator.SetBool("isLocked", isLocked);
+        playerAnimator.SetBool("isUsingRootMotion", useRootMotion);
         playerAnimator.CrossFade(targetAnim, 0.2f);
     }
 
@@ -86,4 +91,18 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         playerAnimator.SetBool("isFalling", faller);
     }
+
+    private void OnAnimatorMove()
+    {
+        if(manager.isUsingRootMotion)
+        {
+            locomotion.playerRb.drag = 0;
+            Vector3 deltaPos = playerAnimator.deltaPosition;
+            deltaPos.y = 0;
+            Vector3 velocity = deltaPos / Time.deltaTime;
+            locomotion.playerRb.velocity = velocity;
+        }
+        
+    }
+
 }

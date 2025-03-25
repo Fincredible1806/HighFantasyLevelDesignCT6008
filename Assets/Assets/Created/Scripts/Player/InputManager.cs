@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
     public float horizontalInput;
 
     private bool sprintInput;
+    private bool dodgeInput = false;
     private bool jumpInput;
 
     private void Awake()
@@ -43,6 +44,7 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Sprinting.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprinting.canceled += i => sprintInput = false;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+            playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
         }
 
         playerControls.Enable();
@@ -58,6 +60,7 @@ public class InputManager : MonoBehaviour
         HandleMovementInput();
         HandleSprintInput();
         HandleJumpInput();
+        HandleDodgeInput();
     }
 
     private void HandleMovementInput()
@@ -91,6 +94,15 @@ public class InputManager : MonoBehaviour
         {
             jumpInput = false;
             locomotion.HandleJump();
+        }
+    }
+
+    private void HandleDodgeInput()
+    {
+        if(dodgeInput)
+        {
+            dodgeInput = false;
+            locomotion.HandleDodge();
         }
     }
 

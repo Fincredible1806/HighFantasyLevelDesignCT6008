@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     CameraManager camManager;
 
     public bool isInteracting;
+    public bool isUsingRootMotion;
 
     private void Awake()
     {
@@ -33,8 +34,9 @@ public class PlayerManager : MonoBehaviour
     private void LateUpdate()
     {
         camManager.AllCamMovement();
-
+         
         isInteracting = animator.GetBool("isLocked");
+        isUsingRootMotion = animator.GetBool("isUsingRootMotion");
         playerLoco.isJumping = animator.GetBool("isJumping");
         animator.SetBool("isGrounded", playerLoco.isGrounded);
     }
