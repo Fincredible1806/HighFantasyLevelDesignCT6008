@@ -23,22 +23,33 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        inputManager.HandleAllInput();
+        if(playerLoco.canPlayCharacter)
+        {
+            inputManager.HandleAllInput();
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        playerLoco.HandleAllMovement();
+        if (playerLoco.canPlayCharacter)
+        {
+            playerLoco.HandleAllMovement();
+        }
     }
 
     private void LateUpdate()
     {
-        camManager.AllCamMovement();
-         
-        isInteracting = animator.GetBool("isLocked");
-        isUsingRootMotion = animator.GetBool("isUsingRootMotion");
-        playerLoco.isJumping = animator.GetBool("isJumping");
-        animator.SetBool("isGrounded", playerLoco.isGrounded);
+        if (playerLoco.canPlayCharacter)
+        {
+            camManager.AllCamMovement();
+
+            isInteracting = animator.GetBool("isLocked");
+            isUsingRootMotion = animator.GetBool("isUsingRootMotion");
+            playerLoco.isJumping = animator.GetBool("isJumping");
+            animator.SetBool("isGrounded", playerLoco.isGrounded);
+        }
+
     }
 
 }

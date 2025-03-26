@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
     private float defaultPos;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     private Vector3 cameraVectorPos;
+    private PlayerLocomotion locomotion;
 
     [SerializeField] LayerMask collisionLayers;
     [SerializeField] string camPivotName;
@@ -29,6 +30,7 @@ public class CameraManager : MonoBehaviour
     public float camFollowSpeed = 0.2f;
     private void Awake()
     {
+        locomotion = FindObjectOfType<PlayerLocomotion>();
         targetTransform = FindObjectOfType<PlayerManager>().transform;
         inpManager = FindObjectOfType<InputManager>();
         camPivot = GameObject.Find(camPivotName).transform;
@@ -38,9 +40,12 @@ public class CameraManager : MonoBehaviour
 
     public void AllCamMovement()
     {
-        FollowTarget();
-        RotateCamera();
-        HandleCollision();
+        if(locomotion.canPlayCharacter)
+        {
+            FollowTarget();
+            RotateCamera();
+            HandleCollision();
+        }
     }
 
     private void FollowTarget()

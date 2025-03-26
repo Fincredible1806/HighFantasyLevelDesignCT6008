@@ -13,6 +13,8 @@ public class PlayerLocomotion : MonoBehaviour
     PlayerManager manager;
     PlayerAnimationManager animManager;
 
+    public bool canPlayCharacter = true;
+
     [Header("Falling")]
     public float airTime;
     public float fallingSpeed;
@@ -48,15 +50,17 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleAllMovement()
     {
-        HandleFalling();
-
-        if (manager.isInteracting || manager.isUsingRootMotion)
+        if(canPlayCharacter)
         {
-            return;
-        }
-        HandleMovemet();
-        RotateHandler();
+            HandleFalling();
 
+            if (manager.isInteracting || manager.isUsingRootMotion)
+            {
+                return;
+            }
+            HandleMovemet();
+            RotateHandler();
+        }
     }
     private void HandleMovemet()
     {
