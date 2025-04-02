@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 8107190456209775893}
   - component: {fileID: 1190961272409393491}
   - component: {fileID: 8891663499800545307}
-  - component: {fileID: 5616339423449817463}
-  m_Layer: 0
+  - component: {fileID: 967620144980610337}
+  m_Layer: 6
   m_Name: House A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8107190456209775893
 Transform:
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.6766202, y: 3.6766202, z: 3.6766202}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 205571572686532049}
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5616339423449817463
-MeshCollider:
+--- !u!65 &967620144980610337
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,10 +105,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4887216478360415443, guid: 4537ab35a0f3c5d4491b0986d90893da, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.2533851, y: 1.6216524, z: 2}
+  m_Center: {x: -0.000013589859, y: -0.029849082, z: -0.000002861023}
 --- !u!1 &3232907268165522248
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,12 +120,12 @@ GameObject:
   - component: {fileID: 1946281316970939952}
   - component: {fileID: 8453674634238146074}
   - component: {fileID: 565823671336049812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Small Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4395933073047243312
 Transform:
@@ -226,12 +225,12 @@ GameObject:
   - component: {fileID: 7070638932822518050}
   - component: {fileID: 1537635678340966494}
   - component: {fileID: 2415978643196051189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Small Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &205571572686532049
 Transform:
@@ -367,9 +366,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 67364546214547229, guid: 6336862f86e872944895b7c5569e9988, type: 3}
+    - target: {fileID: 67364546214547229, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
       propertyPath: m_Name
       value: Simple Door Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 67364546214547229, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 67364546214547229, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6979808
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7161165
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 91.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 7953210772033995374, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7953210772033995374, guid: 6336862f86e872944895b7c5569e9988,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -378,6 +413,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 6336862f86e872944895b7c5569e9988, type: 3}
 --- !u!4 &3255623477363857380 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8366692794923306, guid: 6336862f86e872944895b7c5569e9988, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8366692794923306, guid: 6336862f86e872944895b7c5569e9988,
+    type: 3}
   m_PrefabInstance: {fileID: 3257216592715296462}
   m_PrefabAsset: {fileID: 0}

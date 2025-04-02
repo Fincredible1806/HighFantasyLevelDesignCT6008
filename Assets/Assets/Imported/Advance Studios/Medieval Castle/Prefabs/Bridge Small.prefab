@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6.1049995, y: 11.339426, z: 6.1049995}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1069357221733129813}
@@ -44,13 +44,13 @@ GameObject:
   - component: {fileID: 1069357221733129813}
   - component: {fileID: 4967516959221930824}
   - component: {fileID: 8690082736745137894}
-  - component: {fileID: 113745674807120203}
+  - component: {fileID: 772484318317970180}
   m_Layer: 0
   m_Name: BridgeEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1069357221733129813
 Transform:
@@ -117,8 +117,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &113745674807120203
-MeshCollider:
+--- !u!65 &772484318317970180
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,10 +135,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6623636414208535075, guid: a18e05c3226dd274caeb4a43212e40c8, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.2000003, y: 1.1176838, z: 0.872942}
+  m_Center: {x: -0.03913045, y: -0.22008823, z: 0.000002861023}
 --- !u!1 &4510459257017618164
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,13 +149,13 @@ GameObject:
   - component: {fileID: 8320802621038020911}
   - component: {fileID: 3541367027727260241}
   - component: {fileID: 8535393191410532305}
-  - component: {fileID: 5567521286464214978}
+  - component: {fileID: 287901892936558681}
   m_Layer: 0
   m_Name: BridgeStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8320802621038020911
 Transform:
@@ -223,8 +222,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5567521286464214978
-MeshCollider:
+--- !u!65 &287901892936558681
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -241,7 +240,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4982261723046905864, guid: a18e05c3226dd274caeb4a43212e40c8, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.2000003, y: 1.1176838, z: 0.872942}
+  m_Center: {x: -0.03913021, y: -0.22008847, z: 0.000002861023}
