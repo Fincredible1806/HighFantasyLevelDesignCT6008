@@ -255,6 +255,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AttackButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""5838f703-ce0a-4509-99dd-fc621c0b2c9d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -305,7 +314,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eda6f050-95c9-4921-bac6-2099e5321415"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -323,6 +332,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a4bb568-8783-475c-82c9-b486306c6fc1"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c11bf12-561f-44d0-a428-93acfb1c6fe8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -338,6 +369,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Sprinting = m_PlayerActions.FindAction("Sprinting", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
+        m_PlayerActions_AttackButton = m_PlayerActions.FindAction("AttackButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -456,6 +488,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Sprinting;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_Dodge;
+    private readonly InputAction m_PlayerActions_AttackButton;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -463,6 +496,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Sprinting => m_Wrapper.m_PlayerActions_Sprinting;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
+        public InputAction @AttackButton => m_Wrapper.m_PlayerActions_AttackButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -481,6 +515,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
+            @AttackButton.started += instance.OnAttackButton;
+            @AttackButton.performed += instance.OnAttackButton;
+            @AttackButton.canceled += instance.OnAttackButton;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -494,6 +531,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
+            @AttackButton.started -= instance.OnAttackButton;
+            @AttackButton.performed -= instance.OnAttackButton;
+            @AttackButton.canceled -= instance.OnAttackButton;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -521,5 +561,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSprinting(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnAttackButton(InputAction.CallbackContext context);
     }
 }

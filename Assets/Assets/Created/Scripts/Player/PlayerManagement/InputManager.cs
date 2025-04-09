@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
     private bool sprintInput;
     private bool dodgeInput = false;
     private bool jumpInput;
+    public bool attackInput = false;
 
     private void Awake()
     {
