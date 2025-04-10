@@ -5,17 +5,31 @@ using UnityEngine;
 
 public class CombatHandler : MonoBehaviour
 {
-    private Animator animator;
-    public float cooldownTime = 2f;
-    private float nextFireTime = 0f;
-    public static int numOfClicks = 0;
-    float lastClickTime = 0f;
-    float maxComboDelay = 1;
+    public float damage;
+
+    BoxCollider triggerBox;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        triggerBox = GetComponent<BoxCollider>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        var enemy = other.gameObject.GetComponent<EnemyLife>();
+        if(enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
+    }
 
+    public void EnableTriggerBox()
+    {
+        triggerBox.enabled = true;
+    }
+
+    public void DisableTriggerBox()
+    {
+        triggerBox.enabled = false;
+    }
 }

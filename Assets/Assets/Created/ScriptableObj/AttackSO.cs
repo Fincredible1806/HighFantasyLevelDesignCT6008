@@ -7,4 +7,5 @@ public class AttackSO : ScriptableObject
 {
     public AnimatorOverrideController animatorOverride;
     public float damage;
+    public bool isStagger;
 }

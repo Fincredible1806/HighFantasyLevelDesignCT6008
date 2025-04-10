@@ -26,6 +26,7 @@ public class PlayerLocomotion : MonoBehaviour
     public bool isGrounded;
     public bool isSprinting;
     public bool isJumping;
+    public bool isDodging;
 
     [Header("Movement Speeds")]
     [SerializeField] private float walkSpeed = 2f;
@@ -38,6 +39,7 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private float gravIntensity = -15;
     [SerializeField] private float jumpCoolDown = 2f;
     [SerializeField] private float jumpTimePassed = 1f;
+    public float dodgeForce;
 
     private void Awake()
     {
@@ -53,7 +55,10 @@ public class PlayerLocomotion : MonoBehaviour
         if(canPlayCharacter)
         {
             HandleFalling();
-
+            if(isDodging)
+            {
+                playerRb.AddForce(dodgeForce * -playerRb.transform.forward, ForceMode.Acceleration);
+            }
             if (manager.isInteracting || manager.isUsingRootMotion)
             {
                 return;
@@ -202,13 +207,18 @@ public class PlayerLocomotion : MonoBehaviour
         }
 
         animManager.PlayTargetAnimation("Dodge", true, true);
-
+        isDodging = true;
         //Toggle Invulvn
-
     }
 
     private void FixedUpdate()
     {
         jumpTimePassed = Mathf.Clamp(jumpTimePassed + Time.deltaTime, 0, 2.5f);
+    }
+
+    public void SetDodgeFalse()
+    {
+        isDodging = false;
+        playerRb.velocity = Vector3.zero;
     }
 }
