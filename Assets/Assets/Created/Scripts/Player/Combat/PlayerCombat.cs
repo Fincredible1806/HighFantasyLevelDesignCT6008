@@ -39,6 +39,7 @@ public class PlayerCombat : MonoBehaviour
 
             if(Time.time - lastClickTime >= attackWindow)
             {
+
                 animator.runtimeAnimatorController = combo[comboCounter].animatorOverride;
                 animator.CrossFadeInFixedTime("Attack", 0.5f);
                 handler.damage = combo[comboCounter].damage;

@@ -16,7 +16,7 @@ public class CombatHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var enemy = other.gameObject.GetComponent<EnemyLife>();
+        var enemy = other.gameObject.GetComponent<EnemyNavigation>();
         if(enemy != null)
         {
             enemy.TakeDamage(damage);
