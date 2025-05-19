@@ -7,12 +7,7 @@ public class Weapon : MonoBehaviour
     public int dmgValue = 132; //Damage of the weapon
     public Color dmgColor = Color.cyan; //Color of the text with the damage value
 
-    private BoxCollider coll; //Collider of the weapon
-
-    void Awake()
-    {
-        coll = GetComponent<BoxCollider>();
-    }
+    public BoxCollider coll; //Collider of the weapon
 
 
 	private void OnTriggerEnter(Collider other)
