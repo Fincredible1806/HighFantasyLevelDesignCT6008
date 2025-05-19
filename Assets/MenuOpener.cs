@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class MenuOpener : MonoBehaviour
 {
    [SerializeField] GameObject canvas;
@@ -11,6 +10,7 @@ public class MenuOpener : MonoBehaviour
         {
             canvas.SetActive(true);
             Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
